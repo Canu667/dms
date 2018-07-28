@@ -3,6 +3,11 @@ documents_index:
     methods: GET
     controller: App\Controller\ApiDocumentController::index
 
+documents_create:
+    path: /api/documents
+    methods: POST
+    controller: App\Controller\ApiDocumentController::create
+
 documents_delete:
     path: /api/documents/{id}
     methods: DELETE

@@ -17,6 +17,11 @@ class DocumentTypeRepository
         $this->entityManager = $entityManager;
     }
 
+    public function findByType(string $mimeType): ?DocumentType
+    {
+        return $this->entityManager->getRepository(DocumentType::class)->findOneBy(['mimeType' => $mimeType]);
+    }
+
     public function findAll(): array
     {
         return $this->entityManager->getRepository(DocumentType::class)->findAll();

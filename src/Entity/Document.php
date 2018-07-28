@@ -4,8 +4,11 @@ declare(strict_types = 1);
 
 namespace App\Entity;
 
-use DateTime;
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\Exclude;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Table(
@@ -28,20 +31,6 @@ class Document
     private $id;
 
     /**
-     * @var DateTime
-     *
-     * @ORM\Column(name="created_at", type="datetime", nullable=false, options={"default":"CURRENT_TIMESTAMP"})
-     */
-    protected $createdAt;
-
-    /**
-     * @var DateTime
-     *
-     * @ORM\Column(name="modified_at", type="datetime", nullable=true)
-     */
-    protected $modifiedAt;
-
-    /**
      * @var DocumentType
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\DocumentType", inversedBy="documents")
@@ -58,40 +47,26 @@ class Document
     /**
      * @var string
      *
-     * @ORM\Column(name="path", type="string", length=120, nullable=true)
+     * @ORM\Column(name="file_name", type="string", length=120, nullable=false)
      */
-    private $path;
+    private $fileName;
+
+    /**
+     * @var UploadedFile
+     *
+     * @Assert\NotBlank(message="Please upload the document!")
+     * @Assert\File()
+     *
+     * @Exclude()
+     */
+    private $documentUpload;
 
     public function getId(): int
     {
         return $this->id;
     }
 
-    public function getCreatedAt(): DateTime
-    {
-        return $this->createdAt;
-    }
-
-    public function setCreatedAt(DateTime $createdAt): self
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    public function getModifiedAt(): DateTime
-    {
-        return $this->modifiedAt;
-    }
-
-    public function setModifiedAt(string $modifiedAt): self
-    {
-        $this->modifiedAt = $modifiedAt;
-
-        return $this;
-    }
-
-    public function getType(): DocumentType
+    public function getType(): ?DocumentType
     {
         return $this->type;
     }
@@ -103,7 +78,7 @@ class Document
         return $this;
     }
 
-    public function getName(): string
+    public function getName(): ?string
     {
         return $this->name;
     }
@@ -115,14 +90,26 @@ class Document
         return $this;
     }
 
-    public function getPath(): string
+    public function getFileName(): ?string
     {
-        return $this->path;
+        return $this->fileName;
     }
 
-    public function setPath(string $path): self
+    public function setFileName(string $fileName): self
     {
-        $this->path = $path;
+        $this->fileName = $fileName;
+
+        return $this;
+    }
+
+    public function getDocumentUpload(): ?UploadedFile
+    {
+        return $this->documentUpload;
+    }
+
+    public function setDocumentUpload(UploadedFile $documentUpload): self
+    {
+        $this->documentUpload = $documentUpload;
 
         return $this;
     }

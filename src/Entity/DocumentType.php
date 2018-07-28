@@ -7,8 +7,8 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use JMS\Serializer\Annotation as Serializer;
 use JMS\Serializer\Annotation\Exclude;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Table(
@@ -33,7 +33,9 @@ class DocumentType
     /**
      * @var string
      *
-     * @ORM\Column(name="mime_type", type="string", length=40, nullable=false)
+     * @Assert\NotBlank()
+     *
+     * @ORM\Column(name="mime_type", type="string", length=100, nullable=false)
      */
     private $mimeType;
 
