@@ -51,11 +51,14 @@
             "assets:install %PUBLIC_DIR%": "symfony-cmd",
             "security-checker security:check": "script"
         },
+        "linkPhpUnitBridge": "ln -s ../../bin/phpunit vendor/bin/phpunit",
         "post-install-cmd": [
-            "@auto-scripts"
+            "@auto-scripts",
+            "@linkPhpUnitBridge"
         ],
         "post-update-cmd": [
-            "@auto-scripts"
+            "@auto-scripts",
+            "@linkPhpUnitBridge"
         ]
     },
     "conflict": {
