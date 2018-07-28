@@ -1,0 +1,25 @@
+parameters:
+    git_dir: .
+    bin_dir: vendor/bin
+    tasks:
+        composer: ~
+        git_blacklist:
+            keywords:
+                - 'die('
+                - 'var_dump('
+                - 'dump('
+        jsonlint: ~
+        phpcpd:
+            directory: 'src'
+        phpcs:
+            standard: 'PSR2'
+            whitelist_patterns:
+                - 'src/*'
+        phplint: ~
+        phpmd:
+            ruleset: ['phpmd.xml']
+            exclude: ['tests']
+        phpunit:
+            always_execute: true
+        securitychecker: ~
+        yamllint: ~

@@ -1,4 +1,40 @@
 {
+    "composer/ca-bundle": {
+        "version": "1.1.1"
+    },
+    "composer/composer": {
+        "version": "1.6.5"
+    },
+    "composer/semver": {
+        "version": "1.4.2"
+    },
+    "composer/spdx-licenses": {
+        "version": "1.4.0"
+    },
+    "doctrine/collections": {
+        "version": "v1.5.0"
+    },
+    "gitonomy/gitlib": {
+        "version": "v1.0.4"
+    },
+    "jakub-onderka/php-console-color": {
+        "version": "0.1"
+    },
+    "jakub-onderka/php-console-highlighter": {
+        "version": "v0.3.2"
+    },
+    "jakub-onderka/php-parallel-lint": {
+        "version": "v1.0.0"
+    },
+    "justinrainbow/json-schema": {
+        "version": "5.2.7"
+    },
+    "monolog/monolog": {
+        "version": "1.23.0"
+    },
+    "phpro/grumphp": {
+        "version": "v0.14.1"
+    },
     "psr/cache": {
         "version": "1.0.1"
     },
@@ -10,6 +46,24 @@
     },
     "psr/simple-cache": {
         "version": "1.0.1"
+    },
+    "seld/cli-prompt": {
+        "version": "1.0.3"
+    },
+    "seld/jsonlint": {
+        "version": "1.7.1"
+    },
+    "seld/phar-utils": {
+        "version": "1.0.1"
+    },
+    "sensiolabs/security-checker": {
+        "version": "4.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "4.0",
+            "ref": "421933bf8f0e75546ac8e00cb3eb12904fa2ac1a"
+        }
     },
     "symfony/cache": {
         "version": "v4.1.2"
@@ -71,8 +125,23 @@
     "symfony/lts": {
         "version": "4-dev"
     },
+    "symfony/options-resolver": {
+        "version": "v4.1.2"
+    },
+    "symfony/phpunit-bridge": {
+        "version": "4.1",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "4.1",
+            "ref": "2955e26d3818b803d82b5de05d91805df5994d3a"
+        }
+    },
     "symfony/polyfill-mbstring": {
         "version": "v1.8.0"
+    },
+    "symfony/process": {
+        "version": "v4.1.2"
     },
     "symfony/routing": {
         "version": "4.0",
@@ -81,6 +150,15 @@
             "branch": "master",
             "version": "4.0",
             "ref": "cda8b550123383d25827705d05a42acf6819fe4e"
+        }
+    },
+    "symfony/web-server-bundle": {
+        "version": "3.3",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "3.3",
+            "ref": "dae9b39fd6717970be7601101ce5aa960bf53d9a"
         }
     },
     "symfony/yaml": {
