@@ -99,7 +99,8 @@ class ApiDocumentController extends ApiAbstractController
         $this->documentRepository->add($document);
 
         return $this->createJsonResponseFromSerialized(
-            $this->serializer->serialize($document, 'json')
+            $this->serializer->serialize($document, 'json'),
+            Response::HTTP_CREATED
         );
     }
 
