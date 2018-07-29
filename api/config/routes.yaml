@@ -3,6 +3,11 @@ documents_index:
     methods: GET
     controller: App\Controller\ApiDocumentController::index
 
+documents_by_type_index:
+    path: /api/document_types/{id}/documents
+    methods: GET
+    controller: App\Controller\ApiDocumentController::indexByType
+
 documents_create:
     path: /api/documents
     methods: POST

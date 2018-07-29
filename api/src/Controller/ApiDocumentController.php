@@ -65,6 +65,13 @@ class ApiDocumentController extends ApiAbstractController
         );
     }
 
+    public function indexByType(int $id): JsonResponse
+    {
+        return $this->createJsonResponseFromSerialized(
+            $this->serializer->serialize($this->documentRepository->findAllByType($id), 'json')
+        );
+    }
+
     public function create(Request $request): JsonResponse
     {
         $document = new Document();
@@ -104,9 +111,9 @@ class ApiDocumentController extends ApiAbstractController
         );
     }
 
-    public function delete(string $id): JsonResponse
+    public function delete(int $id): JsonResponse
     {
-        $document = $this->documentRepository->find((int) $id);
+        $document = $this->documentRepository->find($id);
 
         if ($document === null) {
             throw new NotFoundHttpException('Document not found');

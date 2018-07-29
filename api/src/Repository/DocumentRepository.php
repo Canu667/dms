@@ -38,4 +38,9 @@ class DocumentRepository
     {
         return $this->entityManager->getRepository(Document::class)->findAll();
     }
+
+    public function findAllByType(int $typeId): array
+    {
+        return $this->entityManager->getRepository(Document::class)->findBy(['type' => $typeId]);
+    }
 }

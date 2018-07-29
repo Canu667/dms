@@ -9,7 +9,9 @@ const DocumentService = {
         return axios.get(`${TYPES_ENDPOINT}`);
     },
     getDocuments: function (typeId) {
-
+        if (typeId) {
+            return axios.get(`${TYPES_ENDPOINT}/${typeId}/documents`)
+        }
         return axios.get(`${DOCUMENTS_ENDPOINT}/`);
     },
     deleteDocument: function (documentId) {
