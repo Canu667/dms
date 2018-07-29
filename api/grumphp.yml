@@ -1,5 +1,5 @@
 parameters:
-    git_dir: .
+    git_dir: ../
     bin_dir: vendor/bin
     tasks:
         composer: ~
