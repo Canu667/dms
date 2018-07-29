@@ -1,8 +1,8 @@
 import axios from 'axios';
 import config from '../config.js';
 
-const DOCUMENTS_ENDPOINT = `${config.backendApi}/documents`;
-const TYPES_ENDPOINT = `${config.backendApi}/document_types`;
+const DOCUMENTS_ENDPOINT = `${config.backendApi}/api/documents`;
+const TYPES_ENDPOINT = `${config.backendApi}/api/document_types`;
 
 const DocumentService = {
     getTypes: function () {
