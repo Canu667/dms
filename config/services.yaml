@@ -34,6 +34,6 @@ services:
     app.exception_listener:
         public: false
         class: App\EventListener\ExceptionListener
-        arguments: ["%kernel.environment%"]
+        arguments: ["@logger", "%kernel.environment%"]
         tags:
             - { name: kernel.event_listener, event: kernel.exception }

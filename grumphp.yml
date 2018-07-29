@@ -16,6 +16,8 @@ parameters:
         phplint: ~
         phpmd:
             ruleset: ['phpmd.xml']
+            exclude:
+                - 'src/Migrations/*.php'
         phpunit:
             always_execute: true
         securitychecker: ~

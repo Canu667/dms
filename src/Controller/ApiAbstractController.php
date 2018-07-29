@@ -9,8 +9,11 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 class ApiAbstractController extends Controller
 {
-    protected function createJsonResponseFromSerialized(string $serializedData, int $code = 200, array $headers = [])
-    {
+    protected function createJsonResponseFromSerialized(
+        string $serializedData,
+        int $code = 200,
+        array $headers = []
+    ): JsonResponse {
         return new JsonResponse(
             $serializedData,
             $code,
