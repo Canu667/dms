@@ -1,8 +1,16 @@
 {
     "type": "project",
     "name": "dgreda/dms",
-    "license": "MIT",
+    "license": "GNU GPL v3.0",
     "description": "Simple Document Management System in Symfony 4",
+    "authors": [
+        {
+            "name": "Damian Gręda",
+            "email": "damian.greda@icloud.com",
+            "homepage": "https://github.com/dgreda",
+            "role": "Developer"
+        }
+    ],
     "require": {
         "php": "^7.1.3",
         "ext-ctype": "*",
