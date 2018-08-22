@@ -1,4 +1,7 @@
 {
+    "aws/aws-sdk-php": {
+        "version": "3.64.15"
+    },
     "composer/ca-bundle": {
         "version": "1.1.1"
     },
@@ -10,6 +13,9 @@
     },
     "composer/spdx-licenses": {
         "version": "1.4.0"
+    },
+    "composer/xdebug-handler": {
+        "version": "1.1.0"
     },
     "doctrine/annotations": {
         "version": "1.0",
@@ -80,6 +86,15 @@
     "gitonomy/gitlib": {
         "version": "v1.0.4"
     },
+    "guzzlehttp/guzzle": {
+        "version": "6.3.3"
+    },
+    "guzzlehttp/promises": {
+        "version": "v1.3.1"
+    },
+    "guzzlehttp/psr7": {
+        "version": "1.4.2"
+    },
     "jakub-onderka/php-console-color": {
         "version": "0.1"
     },
@@ -116,6 +131,9 @@
     "monolog/monolog": {
         "version": "1.23.0"
     },
+    "mtdowling/jmespath.php": {
+        "version": "2.4.0"
+    },
     "nelmio/cors-bundle": {
         "version": "1.5",
         "recipe": {
@@ -151,6 +169,9 @@
     },
     "psr/container": {
         "version": "1.0.0"
+    },
+    "psr/http-message": {
+        "version": "1.0.1"
     },
     "psr/log": {
         "version": "1.0.2"

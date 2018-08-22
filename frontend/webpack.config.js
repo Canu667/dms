@@ -17,7 +17,7 @@ module.exports = {
     },
     devServer: {
         port: 9009,
-        host: '127.0.0.1',
+        host: '0.0.0.0',
         disableHostCheck: true,
         inline: true,
         publicPath: '/public/',

@@ -15,6 +15,9 @@ services:
         public: false       # Allows optimizing the container by removing unused services; this also means
                             # fetching services directly from the container via $container->get() won't work.
                             # The best practice is to be explicit about your dependencies anyway.
+        bind:
+          $bucket: '%env(BUCKET)%'
+         #   $documentFileManager: '@App\Service\AWSDocumentFileManager'
 
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
@@ -37,3 +40,16 @@ services:
         arguments: ["@logger", "%kernel.environment%"]
         tags:
             - { name: kernel.event_listener, event: kernel.exception }
+
+    app.s3Client:
+        public: false
+        class: Aws\S3\S3Client
+        arguments:
+            - {
+                version: 'latest',
+                region: 'us-east-1'
+              }
+
+    Aws\S3\S3Client: '@app.s3Client'
+
+    App\Service\DocumentFileManagerInterface: '@App\Service\AWSDocumentFileManager'

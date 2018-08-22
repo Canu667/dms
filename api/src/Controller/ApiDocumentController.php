@@ -9,7 +9,7 @@ use App\Form\Type\DocumentType;
 use App\Form\Util\FormHelper;
 use App\Repository\DocumentRepository;
 use App\Repository\DocumentTypeRepository;
-use App\Service\DocumentFileManager;
+use App\Service\DocumentFileManagerInterface;
 use JMS\Serializer\SerializerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -35,7 +35,7 @@ class ApiDocumentController extends ApiAbstractController
     private $serializer;
 
     /**
-     * @var DocumentFileManager
+     * @var DocumentFileManagerInterface
      */
     private $documentFileManager;
 
@@ -48,7 +48,7 @@ class ApiDocumentController extends ApiAbstractController
         DocumentRepository $documentRepository,
         DocumentTypeRepository $documentTypeRepository,
         SerializerInterface $serializer,
-        DocumentFileManager $documentFileManager,
+        DocumentFileManagerInterface $documentFileManager,
         FormHelper $formHelper
     ) {
         $this->documentRepository     = $documentRepository;
@@ -94,13 +94,13 @@ class ApiDocumentController extends ApiAbstractController
 
         $uploadedFile = $document->getDocumentUpload();
         $document->setName($uploadedFile->getClientOriginalName());
+        $document->setType($this->documentTypeRepository->findByType($uploadedFile->getMimeType()));
 
         $targetFile = $this->documentFileManager->finishUpload(
             $uploadedFile,
             $this->getUploadDirectory()
         );
 
-        $document->setType($this->documentTypeRepository->findByType($targetFile->getMimeType()));
         $document->setFileName($targetFile->getFilename());
 
         $this->documentRepository->add($document);

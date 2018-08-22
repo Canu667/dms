@@ -6,7 +6,7 @@ namespace App\Service;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\File\File;
 
-class DocumentFileManager
+class DocumentFileManager implements DocumentFileManagerInterface
 {
     /**
      * @var Filesystem
