@@ -1,5 +1,8 @@
 <?php
 
+use Oneup\FlysystemBundle\OneupFlysystemBundle;
+use Vich\UploaderBundle\VichUploaderBundle;
+
 return [
     Symfony\Bundle\FrameworkBundle\FrameworkBundle::class => ['all' => true],
     Symfony\Bundle\WebServerBundle\WebServerBundle::class => ['dev' => true],
@@ -9,4 +12,6 @@ return [
     Symfony\Bundle\MonologBundle\MonologBundle::class => ['all' => true],
     Nelmio\CorsBundle\NelmioCorsBundle::class => ['all' => true],
     Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle::class => ['all' => true],
+    VichUploaderBundle::class => ['all' => true],
+    OneupFlysystemBundle::class => ['all' => true]
 ];

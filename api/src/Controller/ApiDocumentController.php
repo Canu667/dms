@@ -93,15 +93,9 @@ class ApiDocumentController extends ApiAbstractController
         }
 
         $uploadedFile = $document->getDocumentUpload();
+
         $document->setName($uploadedFile->getClientOriginalName());
         $document->setType($this->documentTypeRepository->findByType($uploadedFile->getMimeType()));
-
-        $targetFile = $this->documentFileManager->finishUpload(
-            $uploadedFile,
-            $this->getUploadDirectory()
-        );
-
-        $document->setFileName($targetFile->getFilename());
 
         $this->documentRepository->add($document);
 
@@ -119,7 +113,7 @@ class ApiDocumentController extends ApiAbstractController
             throw new NotFoundHttpException('Document not found');
         }
 
-        $this->documentFileManager->remove($document->getFileName(), $this->getUploadDirectory());
+        //$this->documentFileManager->remove($document->getFileName(), $this->getUploadDirectory());
         $this->documentRepository->remove($document);
 
         return new JsonResponse(null, JsonResponse::HTTP_NO_CONTENT);

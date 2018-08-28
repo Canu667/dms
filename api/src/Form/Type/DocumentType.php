@@ -12,6 +12,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Vich\UploaderBundle\Form\Type\VichFileType;
 
 class DocumentType extends AbstractType
 {
@@ -38,7 +39,6 @@ class DocumentType extends AbstractType
             FileType::class,
             [
                 'constraints' => [
-                    new NotBlank(),
                     new File([
                         'maxSize'   => '20M',
                         'mimeTypes' => $this->supportedMimeTypes,
@@ -51,7 +51,7 @@ class DocumentType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Document::class,
+            'data_class' => Document::class
         ]);
     }
 }

@@ -7,6 +7,35 @@ parameters:
     locale: 'en'
     documents_directory: '%kernel.project_dir%/uploads/%kernel.environment%'
 
+oneup_flysystem:
+    adapters:
+        local_adapter:
+            local:
+                directory: '%kernel.project_dir%/uploads/%kernel.environment%'
+        assets_adapter:
+            awss3v3:
+                client: app.assets.s3
+                bucket: '%env(BUCKET)%'
+                prefix: assets
+
+    filesystems:
+        local_fs:
+            adapter: local_adapter
+            mount:
+        assets_fs:
+            adapter:    assets_adapter
+            mount:      assets_fs
+
+vich_uploader:
+    db_driver: orm
+    storage:   flysystem
+    mappings:
+        assets:
+            uri_prefix:         /uploads
+            upload_destination: assets_fs
+            namer:              vich_uploader.namer_uniqid
+
+
 services:
     # default configuration for services in *this* file
     _defaults:
@@ -53,3 +82,13 @@ services:
     Aws\S3\S3Client: '@app.s3Client'
 
     App\Service\DocumentFileManagerInterface: '@App\Service\AWSDocumentFileManager'
+
+    app.assets.s3:
+        class: Aws\S3\S3Client
+        arguments:
+            -
+              version: 'latest'
+              region: 'us-east-1'
+              credentials:
+                key: '%env(AWS_ACCESS_KEY_ID)%'
+                secret: '%env(AWS_SECRET_ACCESS_KEY)%'

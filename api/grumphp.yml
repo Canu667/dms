@@ -19,6 +19,6 @@ parameters:
             exclude:
                 - 'src/Migrations/*.php'
         phpunit:
-            always_execute: true
+            always_execute: false
         securitychecker: ~
         yamllint: ~

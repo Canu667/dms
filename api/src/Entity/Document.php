@@ -6,9 +6,11 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation\Exclude;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
-
+use Vich\UploaderBundle\Mapping\Annotation\Uploadable;
+use Vich\UploaderBundle\Mapping\Annotation\UploadableField;
 /**
  * @ORM\Table(
  *      name="documents",
@@ -17,6 +19,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  *      }
  * )
  * @ORM\Entity
+ *
+ * @Uploadable
  */
 class Document
 {
@@ -51,12 +55,9 @@ class Document
     private $fileName;
 
     /**
-     * @var UploadedFile
+     * @UploadableField(mapping="assets", fileNameProperty="fileName")
      *
-     * @Assert\NotBlank(message="Please upload the document!")
-     * @Assert\File()
-     *
-     * @Exclude()
+     * @var File
      */
     private $documentUpload;
 
@@ -94,19 +95,19 @@ class Document
         return $this->fileName;
     }
 
-    public function setFileName(string $fileName): self
+    public function setFileName(?string $fileName): self
     {
         $this->fileName = $fileName;
 
         return $this;
     }
 
-    public function getDocumentUpload(): ?UploadedFile
+    public function getDocumentUpload(): ?File
     {
         return $this->documentUpload;
     }
 
-    public function setDocumentUpload(UploadedFile $documentUpload): self
+    public function setDocumentUpload(File $documentUpload): self
     {
         $this->documentUpload = $documentUpload;
 
