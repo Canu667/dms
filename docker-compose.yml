@@ -1,0 +1,36 @@
+version: '2'
+services:
+  nginx-proxy:
+    image: jwilder/nginx-proxy
+    ports:
+      - "80:80"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+
+  api:
+    build: ./api
+    expose:
+      - '80'
+    volumes:
+      - ./api:/var/www/html
+    environment:
+      - VIRTUAL_HOST=dms-api
+
+  node:
+    image: "node:8"
+    user: "node"
+    working_dir: /home/node/app
+    environment:
+      - NODE_ENV=production
+      - VIRTUAL_HOST=dms
+      - VIRTUAL_PORT=80
+    volumes:
+      - ./frontend/:/home/node/app
+    expose:
+      - "9009"
+    command: "./node_modules/webpack-dev-server/bin/webpack-dev-server.js
+                --config webpack.config.js
+                --progress
+                --env.API_URL=http://dms-api/index.php
+                --content-base ./public
+                --output-public-path /build/"
