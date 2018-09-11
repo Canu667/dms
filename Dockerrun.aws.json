@@ -1,0 +1,86 @@
+{
+  "AWSEBDockerrunVersion": 2,
+  "volumes": [
+    {
+      "name": "api",
+      "host": {
+        "sourcePath": "/var/app/current/api"
+      }
+    },
+    {
+      "name": "frontend",
+      "host": {
+        "sourcePath": "/var/app/current/frontend"
+      }
+    },
+    {
+      "name": "nginx",
+      "host": {
+        "sourcePath": "/var/app/current/nginx/nginx.conf"
+      }
+    }
+  ],
+  "containerDefinitions": [
+    {
+      "name": "api",
+      "image": "nanoninja/php-fpm:7.2",
+      "essential": true,
+      "memory": 128,
+      "portMappings": [
+        {
+          "hostPort": 9000,
+          "containerPort": 9000
+        }
+      ],
+      "mountPoints": [
+        {
+          "sourceVolume": "api",
+          "containerPath": "/var/www/html",
+          "readOnly": false
+        }
+      ]
+    },
+    {
+      "name": "frontend",
+      "image": "node:8",
+      "essential": true,
+      "memory": 128,
+      "portMappings": [
+        {
+          "hostPort": 9009,
+          "containerPort": 9009
+        }
+      ],
+      "mountPoints": [
+        {
+          "sourceVolume": "frontend",
+          "containerPath": "/home/node/app",
+          "readOnly": false
+        }
+      ]
+    },
+    {
+      "name": "proxy",
+      "image": "nginx:latest",
+      "essential": true,
+      "memory": 128,
+      "portMappings": [
+        {
+          "hostPort": 80,
+          "containerPort": 80
+        }
+      ],
+      "mountPoints": [
+        {
+          "sourceVolume": "nginx",
+          "containerPath": "/etc/nginx/conf.d/default.conf",
+          "readOnly": false
+        }
+      ]
+      "links": [
+        "api",
+        "node"
+      ]
+    }
+  ]
+}

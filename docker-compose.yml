@@ -12,8 +12,8 @@ services:
 
   api:
     image: nanoninja/php-fpm:7.2
-    ports:
-      - "9000:9000"
+    expose:
+      - "9000"
     volumes:
       - ./api:/var/www/html
 
