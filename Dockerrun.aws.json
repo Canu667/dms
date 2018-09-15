@@ -8,7 +8,7 @@
       }
     },
     {
-      "name": "frontend",
+      "name": "node",
       "host": {
         "sourcePath": "/var/app/current/frontend"
       }
@@ -41,19 +41,21 @@
       ]
     },
     {
-      "name": "frontend",
+      "name": "node",
       "image": "node:8",
       "essential": true,
       "memory": 128,
+      "user": "node",
       "portMappings": [
         {
           "hostPort": 9009,
           "containerPort": 9009
         }
       ],
+      "command":["/home/node/app/run.sh"],
       "mountPoints": [
         {
-          "sourceVolume": "frontend",
+          "sourceVolume": "node",
           "containerPath": "/home/node/app",
           "readOnly": false
         }
@@ -76,7 +78,7 @@
           "containerPath": "/etc/nginx/conf.d/default.conf",
           "readOnly": false
         }
-      ]
+      ],
       "links": [
         "api",
         "node"

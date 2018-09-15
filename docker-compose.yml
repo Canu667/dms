@@ -30,6 +30,5 @@ services:
     command: "./node_modules/webpack-dev-server/bin/webpack-dev-server.js
                 --config webpack.config.js
                 --progress
-                --env.API_URL=http://dms/index.php
                 --content-base ./public
                 --output-public-path /build/"

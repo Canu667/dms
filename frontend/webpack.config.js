@@ -23,13 +23,6 @@ module.exports = env =>
             inline: true,
             publicPath: '/public/',
         },
-        plugins: [
-            new webpack.DefinePlugin({
-                'process.env': {
-                    API_URL: JSON.stringify(env.API_URL)
-                }
-            })
-        ],
         module: {
             /* it uses some kind of rule on your code */
             rules: [

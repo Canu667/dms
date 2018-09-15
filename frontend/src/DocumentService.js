@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-const DOCUMENTS_ENDPOINT = `${process.env.API_URL}/api/documents`;
-const TYPES_ENDPOINT = `${process.env.API_URL}/api/document_types`;
+const DOCUMENTS_ENDPOINT = `/api/documents`;
+const TYPES_ENDPOINT = `/api/document_types`;
 
 const DocumentService = {
     getTypes: function () {
