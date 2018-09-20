@@ -10,11 +10,8 @@ class DocumentTable extends Component {
 
         this.state = {
             types: [],
-            documents: [],
-            instance: ''
+            documents: []
         };
-
-        DocumentService.getAWSPublicHostname().then((response) => this.setState({instance: response}));
 
         this.handleChange = this.handleChange.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
@@ -63,7 +60,6 @@ class DocumentTable extends Component {
     render() {
         return (
             <div className="table-responsive">
-                Current instance: {this.instance}
                 <table id="documents" className="table table-dark table-bordered table-striped">
                     <thead>
                         <tr>
