@@ -1,0 +1,55 @@
+version: 0.2
+
+env:
+  variables:
+      RDS_HOSTNAME:
+      RDS_PORT:
+      RDS_DB_NAME:
+      RDS_USERNAME:
+      RDS_PASSWORD:
+  #parameter-store:
+     # key: "value"
+     # key: "value"
+
+phases:
+  #install:
+    #commands:
+      # - command
+      # - command
+    #finally:
+      # - command
+      # - command
+  pre_build:
+    commands:
+       - cd api
+       - mkdir var
+    #finally:
+      # - command
+      # - command
+  build:
+    commands:
+       - composer install
+       - chmod 777 ./bin/console
+       - ./bin/console cache:warmup
+       - chmod -R 777 var
+    finally:
+       - ls -ltra var
+      # - command
+  post_build:
+    commands:
+       - cd ..
+      # - command
+    #finally:
+      # - command
+      # - command
+artifacts:
+  files:
+     - '**/*'
+    # - location
+    # - name
+  #discard-paths: yes
+  #base-directory: location
+#cache:
+  #paths:
+    # - path
+    # - path

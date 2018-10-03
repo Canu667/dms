@@ -1,0 +1,52 @@
+version: 0.2
+
+#env:
+  #variables:
+     # key: "value"
+     # key: "value"
+  #parameter-store:
+     # key: "value"
+     # key: "value"
+
+phases:
+  #install:
+    #commands:
+      # - command
+      # - command
+    #finally:
+      # - command
+      # - command
+  pre_build:
+    commands:
+       - cd frontend
+      # - command
+    #finally:
+      # - command
+      # - command
+  build:
+    commands:
+       - chmod 777 run.sh
+       - npm install -g yarn
+       - yarn install
+      # - command
+    #finally:
+      # - command
+      # - command
+  post_build:
+    commands:
+       - cd ..
+      # - command
+    #finally:
+      # - command
+      # - command
+artifacts:
+  files:
+     - '**/*'
+    # - location
+    # - name
+  #discard-paths: yes
+  #base-directory: location
+#cache:
+  #paths:
+    # - path
+    # - path
